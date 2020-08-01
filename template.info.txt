@@ -1,0 +1,7 @@
+base     dokukitv2
+author   Martin Gabelmann
+email    Martin.Gabelmann@kit.edu
+date     2020-08-01
+name     DokuKITv2 Template
+desc     Official KIT-(re)Design
+url      https://github.com/particleKIT/dokuKITv2
