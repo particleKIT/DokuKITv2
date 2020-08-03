@@ -1,3 +1,11 @@
 /**
  * CSS for DokuKIT Template
 */
+#dw__login, #dw__editform, #wiki__editbar, #edit__summary, .content {
+button, input[type=email], input[type=number], input[type=search], input[type=submit], input[type=text], input[type=password], input[type=url], select, textarea {
+    border: 1px solid #00876c;
+    border-top-right-radius: 0.625rem;
+    border-bottom-left-radius: 0.625rem;
+    width: auto;
+}
+}

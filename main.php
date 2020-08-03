@@ -20,18 +20,19 @@ echo '
             preg_replace('/^'.$conf['lang'].':/','',tpl_pagetitle(null, true)),
         '</title>',
         // set viewport for mobile devices
-        '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+        // include js and css from kit sources
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://static.scc.kit.edu/kit-2020/js/jquery-3.4.1.min.js"></script>
+         <script src="https://static.scc.kit.edu/kit-2020/js/main.js"></script>
+         <script src="https://static.scc.kit.edu/kit-2020/js/kit.js"></script>
+         <script src="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="https://kit-cd.scc.kit.edu/global_stylesheet.php.css">
+         <link rel="stylesheet" href="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.css" />
+';
+// dokuwiki specific css and js
 tpl_metaheaders();
 
-//TODO SORT OUT THE JAVASCRIPT/CSS STUFF WE REALLY NEED AND STORE IT LOCALLY
 echo tpl_favicon(array('favicon', 'mobile')), '
-<script src="https://static.scc.kit.edu/kit-2020/js/jquery-3.4.1.min.js"></script>
-<script src="https://static.scc.kit.edu/kit-2020/js/main.js"></script>
-<script src="https://static.scc.kit.edu/kit-2020/js/kit.js"></script>
-<script src="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://kit-cd.scc.kit.edu/global_stylesheet.php.css">
-<link rel="stylesheet" href="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.css" />
-
     </head>
     <body class="oe-page" vocab="http://schema.org/" typeof="WebPage" class="oe-page" vocab="http://schema.org/" typeof="WebPage">
     <header class="page-header">
