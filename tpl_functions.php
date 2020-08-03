@@ -1,7 +1,7 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-
+// parse url defined in menu
 function menulink($id) {
     if(strpos($id, 'http') === 0) {
         return $id;
@@ -29,14 +29,12 @@ function get_menu() {
     
     $defaultmenu = json_decode('
     {
-    "level1": {":start": "Could", ":cat1": "not", ":cat2": "parse JSON menufile"},
+    "level1": {":wiki": "Start", ":error": "ERROR: Could not parse JSON menufile"},
     "level2": {
-        ":cat1": {":link1" : "Kategorie1", ":link2" : "Kategorie2"},
-        ":cat2": {":link3" : "Kategorie3", ":link4" : "Kategorie4"}
+        ":wiki": {":wiki:welcome" : "Wiki", ":playground" : "Playground"}
     },
     "level3": {
-        "link1": {":link1": "Sub-Kategorie1", "link2" : "Sub-Kategorie2"},
-        "link2": {":link1": "Sub-Kategorie3", "link2" : "Sub-Kategorie4"}
+        ":wiki:welcome": {":wiki:welcome": "Welcome", ":wiki:dokuwiki": "DokuWiki", ":wiki:syntax": "Syntax"}
     }  
     }
     ', true);
@@ -70,8 +68,6 @@ function get_menu() {
 				}
 			}
         }
-        //print("<pre>".print_r($data,true)."</pre>");
-        //print("<pre>".print_r($menu,true)."</pre>");
         return $menu;
     }
     $menufile = tpl_getConf('menusite');
@@ -86,11 +82,13 @@ function get_menu() {
 
 //render drop-down html menu from menu-array
 function dropdown_menu() {
+    global $ID;
 $menu = get_menu();
 echo '<ul class="navigation-l1"> ';
 foreach($menu['level1'] as $url => $title){
+    $active = (strpos(trim($ID,':'), trim($url,':')) === 0) ? "active": ""; 
     if(array_key_exists($url, $menu['level2'])){
-    	echo '<li class="flyout">
+    	echo '<li class="flyout ', $active,'">
               <a href="'.menulink($url).'">', $title, '</a>
     	      <div class="dropdown">
     		  <ul class="navigation-l2">';
@@ -111,7 +109,7 @@ foreach($menu['level1'] as $url => $title){
     	}
     	echo '</ul></div></li>';
     } else {
-    	echo '<li class=""><a href="', menulink($url), '">', $title, '</a></li>';
+    	echo '<li class="',$active,'"><a href="', menulink($url), '">', $title, '</a></li>';
     }
 }
 if($_SERVER['REMOTE_USER'] && tpl_getConf('menu') == 'file' && (auth_quickaclcheck(tpl_getConf('menusite')) >= AUTH_EDIT)) {
@@ -120,7 +118,6 @@ if($_SERVER['REMOTE_USER'] && tpl_getConf('menu') == 'file' && (auth_quickaclche
 echo '</ul>';
 }
 
-//TODO
 //render breadcrump-like bar from menu-array
 function trace() {
     global $ID, $conf;
