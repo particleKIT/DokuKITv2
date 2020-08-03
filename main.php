@@ -68,7 +68,7 @@ echo tpl_favicon(array('favicon', 'mobile')), '
 
 if($_SERVER['REMOTE_USER']) echo (new \dokuwiki\Menu\UserMenu())->getListItems();
 echo '              </ul>';
-echo '<div class="navigation-language">';
+echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
 if ($translation) {
     if(!$_SERVER['REMOTE_USER']) $conf['plugin']['translation']['checkage'] = 0;
     echo $translation->showTranslations();
@@ -80,7 +80,7 @@ echo '</div>';
 
 //search bar
 echo ' 
-		<div class="navigation-search">
+		<div class="navigation-search" style="margin-left: 1.3em;">
         	<div class="search-form">
               <form action="', wl(),'" method="get" role="search" id="dw__search" accept-charset="utf-8">
                 <input type="hidden" name="do" value="search" />
