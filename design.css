@@ -89,3 +89,7 @@ div.hiddenHead p::before {
     text-align:left;
     width: 60%;
 }
+
+.columns-plugin tr {
+    background-color: transparent !important;
+}
