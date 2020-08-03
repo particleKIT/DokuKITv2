@@ -45,6 +45,7 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                     <rect class="burger-middle" y="107.2" width="300" height="60.1"></rect>
                     <rect class="burger-bottom" y="0" width="300" height="60.1"></rect>
                 </svg></button>
+                <a id="logo_oe_name" href="', wl($conf['start']),'">', $conf['title'] ,'</a>
                 <div class="navigation-meta">
                     <ul class="navigation-meta-links">
                         <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
