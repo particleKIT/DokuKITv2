@@ -29,7 +29,7 @@ function get_menu() {
     
     $defaultmenu = json_decode('
     {
-    "level1": {":start": "Start", ":cat1": "Reiter1", ":cat2": "Reiter2"},
+    "level1": {":start": "Could", ":cat1": "not", ":cat2": "parse JSON menufile"},
     "level2": {
         ":cat1": {":link1" : "Kategorie1", ":link2" : "Kategorie2"},
         ":cat2": {":link3" : "Kategorie3", ":link4" : "Kategorie4"}
