@@ -74,7 +74,7 @@ div.hiddenHead p::before {
 }
 
 /* double column staff member sites */
-.dokuwiki .memberimage {
+.memberimage {
     position:relative;
     float:left;
     width: 200px;
@@ -83,7 +83,7 @@ div.hiddenHead p::before {
     margin-top: 10px;
 }
 
-.dokuwiki .memberdescription {
+.memberdescription {
     position:relative;
     float:left;
     text-align:left;
