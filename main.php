@@ -37,7 +37,9 @@ echo tpl_favicon(array('favicon', 'mobile')), '
     <body class="oe-page" vocab="http://schema.org/" typeof="WebPage" class="oe-page" vocab="http://schema.org/" typeof="WebPage">
     <header class="page-header">
         <div class="content-wrap">
-            <div class="logo"><a href="http://www.kit.edu" title="KIT-Logo - Link zur KIT-Startseite"><img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/KITLogo.png" /></a></div>
+            <div class="logo">',
+            tpl_includeFile('logo.html')
+            ,'</div>
 
             <div class="navigation">
                 <button class="burger"><svg class="burger-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 274.5" width="300px" height="274.5px">
