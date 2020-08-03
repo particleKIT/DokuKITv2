@@ -40,6 +40,11 @@ echo tpl_favicon(array('favicon', 'mobile')), '
             <div class="logo"><a href="http://www.kit.edu" title="KIT-Logo - Link zur KIT-Startseite"><img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/KITLogo.png" /></a></div>
 
             <div class="navigation">
+                <button class="burger"><svg class="burger-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 274.5" width="300px" height="274.5px">
+                    <rect class="burger-top" y="214.4" width="300" height="60.1"></rect>
+                    <rect class="burger-middle" y="107.2" width="300" height="60.1"></rect>
+                    <rect class="burger-bottom" y="0" width="300" height="60.1"></rect>
+                </svg></button>
                 <div class="navigation-meta">
                     <ul class="navigation-meta-links">
                         <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
@@ -134,6 +139,7 @@ if(
     </div>
 </section>';
 }
+echo '<div class="side-widgets-trigger"></div>';
 html_msgarea();
 // BREADCRUMBS
 echo '<section class="breadcrumbs-big">';
@@ -144,7 +150,7 @@ echo '	</div>
 
 tpl_flush();
 	
-echo '<div class="side-widgets-trigger"></div>
+echo '
 <section class="content-wrap">
 	<div class="content">
 	<div class="KIT_section text full">';
