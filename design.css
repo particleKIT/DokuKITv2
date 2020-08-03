@@ -10,6 +10,9 @@ button, input[type=email], input[type=number], input[type=search], input[type=su
 }
 }
 
+html {
+    font-size: 100%;
+}
 /* hide-plugin integration*/
 
 div.hiddenHead {
