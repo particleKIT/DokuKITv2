@@ -9,3 +9,80 @@ button, input[type=email], input[type=number], input[type=search], input[type=su
     width: auto;
 }
 }
+
+/* hide-plugin integration*/
+
+div.hiddenHead {
+    color: #fff;
+    background-color: #808080;
+    font-weight: bold;
+    padding-left: 6px;
+    font-size: 100%;
+}
+
+div.hiddenGlobal {
+    border:  thick none !important;
+}
+
+div.hiddenOnHidden {
+    color: #fff;
+}
+
+div.hiddenOnVisible {
+    color: #fff;
+}
+
+div.hiddenBody {
+    border-top: none;
+    padding: 0px;
+}
+
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::after,
+div.hiddenGlobal.hiddenHidden > div.hiddenHead p::after {
+    background-image: none !important;
+}
+
+div.hiddenGlobal:not(.hiddenHidden) > div.hiddenHead p::before {
+    background-image: url("/lib/plugins/hidden/images/shrink2.png");
+}
+
+div.hiddenGlobal.hiddenHidden > div.hiddenHead p::before {
+    background-image: url("/lib/plugins/hidden/images/enlarge2.png");
+}
+
+div.hiddenHead p::before,
+div.hiddenHead p::before {
+    display: inline-block;
+    background-size: 1.2em 1.2em;
+    width: 1.2em;
+    height: 1.2em;
+    content: "";
+}
+
+/* nspages plugin compatibility */
+.catpageheadline {
+  text-decoration: none !important;
+  color: __text_alt__ !important;
+  background-color: inherit;
+  font-size: 140%;
+  font-weight: bold;
+  margin: 0.5em 0 0.25em 0;
+  padding: 0;
+}
+
+/* double column staff member sites */
+.dokuwiki .memberimage {
+    position:relative;
+    float:left;
+    width: 200px;
+    margin-left: 4px;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.dokuwiki .memberdescription {
+    position:relative;
+    float:left;
+    text-align:left;
+    width: 60%;
+}
