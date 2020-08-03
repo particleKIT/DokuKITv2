@@ -133,7 +133,8 @@ if(
     $ACT != 'revisions' && 
     $ACT != 'index' && 
     $ACT != 'search' && 
-    $ACT != 'media'
+    $ACT != 'media' &&
+    tpl_getConf("bighead") == 'yes'
 ) {
     /* default images from https://pixabay.com/illustrations/universe-particles-vibration-line-1566161/*/
     echo '

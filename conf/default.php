@@ -1,5 +1,6 @@
 <?php
 $conf['menu'] = 'index';  // 'file' or 'index'
+$conf['bighead'] = 'yes';  // 'file' or 'index'
 $conf['menusite'] = 'menubar'; // name of dokuwiki site 
 $conf['footer'] = 'footer'; // name of dokuwiki site
 $conf['cleanindexlist'] = 'wiki,playground';  // empty or comma-separated list of namespaces

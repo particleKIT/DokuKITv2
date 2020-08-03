@@ -1,4 +1,5 @@
 <?php
+$lang['bighead'] = 'Grosses Banner auf Startseite';
 $lang['menu'] = 'Inhalt des Menus: Index oder Datei';
 $lang['menusite'] = 'Dokuwiki Seite mit statischem JSON menu';
 $lang['cleanindexlist'] = 'Seiten von Menubar ausblenden (komma-separierte Liste)';
