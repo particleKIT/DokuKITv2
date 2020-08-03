@@ -1,6 +1,28 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
+
+function menulink($id) {
+    if(strpos($id, 'http') === 0) {
+        return $id;
+    } elseif(strpos($id, 'www.') === 0) {
+        return $id;
+    }
+    if(strpos($id, "#")){
+        $anchor = substr($id, strpos($id, "#"));
+        $id = substr($id, 0, strpos($id, "#"));
+    } else {
+        $anchor = "";
+    }
+    if(strpos($id, "?")){
+        parse_str(substr($id, strpos($id, "?")+1), $urlParameters);
+        $id = substr($id, 0, strpos($id, "?"));
+    } else {
+        $urlParameters = '';
+    }
+    return wl($id, $urlParameters) . $anchor;
+}
+
 // generate menu-array either from json or from index
 function get_menu() {
     global $conf;
@@ -29,7 +51,7 @@ function get_menu() {
                         );
         foreach($data as $id){
             if(isHiddenPage($id)) continue;
-            if(auth_aclcheck($id,'',array()) < AUTH_READ) continue;
+            if(auth_quickaclcheck($id) < AUTH_READ) continue;
 			$path = '';
 			if(in_array($id, $cleanindexlist)) continue;
 			foreach(explode(':', $id) as $lvl => $ns) {
@@ -69,28 +91,31 @@ echo '<ul class="navigation-l1"> ';
 foreach($menu['level1'] as $url => $title){
     if(array_key_exists($url, $menu['level2'])){
     	echo '<li class="flyout">
-              <a href="', wl($url), '">', $title, '</a>
+              <a href="'.menulink($url).'">', $title, '</a>
     	      <div class="dropdown">
     		  <ul class="navigation-l2">';
     	foreach($menu['level2'][$url] as $url2 => $title2) {
     		if(array_key_exists($url2, $menu['level3'])){
                 echo '<li class="has-submenu">
-                      <a href="', wl($url2), '">', $title2, '</a>
+                      <a href="', menulink($url2), '">', $title2, '</a>
                       <div class="submenu">
                       <ul class="navigation-l3">
                       ';
                 foreach($menu['level3'][$url2] as $url3 => $title3) {
-    			    echo '<li class=""><a href="', wl($url3), '">', $title3, '</a></li>';
+    			    echo '<li class=""><a href="', menulink($url3), '">', $title3, '</a></li>';
                 }
                 echo '</ul></div></li>';
     		} else {
-    			echo '<li class=""><a href="', wl($url2), '">', $title2, '</a></li>';
+                echo '<li class=""><a href="', menulink($url2), '">', $title2, '</a></li>';
     		}
     	}
     	echo '</ul></div></li>';
     } else {
-    	echo '<li class=""><a href="', wl($url), '">', $title, '</a></li>';
+    	echo '<li class=""><a href="', menulink($url), '">', $title, '</a></li>';
     }
+}
+if($_SERVER['REMOTE_USER'] && tpl_getConf('menu') == 'file' && (auth_quickaclcheck(tpl_getConf('menusite')) >= AUTH_EDIT)) {
+    	echo '<li class=""><small><a href="',wl(tpl_getConf('menusite'), array('do'=>'edit')), '">Edit</a></small></li>';
 }
 echo '</ul>';
 }

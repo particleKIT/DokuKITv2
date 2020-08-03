@@ -190,7 +190,7 @@ echo '              </div>
                         <li><a href="/datenschutz.php">Privacy</a></li>
                         <li><a href="http://www.kit.edu"><span>KIT</span></a></li>';
     
-if(!$_SERVER['REMOTE_USER'] && tpl_getConf("showlogin")) {
+if(!$_SERVER['REMOTE_USER']) {
     echo '<li>', (new \dokuwiki\Menu\Item\Login)->asHtmlLink('menuitem' ,false), '</li>';
 } elseif (
     $ACT != 'login' &&
