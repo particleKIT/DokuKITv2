@@ -147,7 +147,7 @@ if(
 <section class="stage stage-small">
     <img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/head-small.jpg" alt="', $conf['title'] ,'" loading="lazy"/>
     <div class="content-wrap">
-        <a href="/index.php">', $conf['title'] ,'</a>
+        <a href="', wl($conf['start']),'">', $conf['title'] ,'</a>
         <!-- <a href="/index.php"><img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/logo.jpg" alt="SCC-Logo" /></a> --!>
     </div>
 </section>';
