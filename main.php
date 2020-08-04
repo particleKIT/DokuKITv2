@@ -50,7 +50,7 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                 <a id="logo_oe_name" href="', wl($conf['start']),'">', $conf['title'] ,'</a>
                 <div class="navigation-meta">
                     <ul class="navigation-meta-links">
-                        <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
+                       <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
  echo '                <li><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
                         <li><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
                         <li><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
@@ -98,14 +98,11 @@ echo '<nav class="navigation-main">', dropdown_menu(), '</nav>';
 
 
 // side tools when scrolling and mobile view
-//TODO: need the javascript/jquery events here
 echo '<ul class="side-widgets">
-<li class="meta"><a accesskey="1" href="">Home</a></li>
-<li class="meta"><a href="/leichte_sprache.php">Leichte Sprache</a></li>
-<li class="meta"><a accesskey="8" href="/impressum.php">Impressum</a></li>
-<li class="meta"><a href="/datenschutz.php">Datenschutz</a></li>
-<li class="meta"><a accesskey="3" href="/sitemap.php">Sitemap</a></li>
-<li class="meta"><a href="http://intranet.kit.edu">Intranet</a></li>
+      <li class="meta">', html_wikilink(':' . $conf['start'], 'Home') ,'</li>
+      <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
+      <li class="meta"><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
+      <li class="meta"><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
 <li class="search">
 	<a title="suchen"><span>suchen</span></a>
     <div class="search-form">
