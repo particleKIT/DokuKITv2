@@ -93,3 +93,48 @@ div.hiddenHead p::before {
 .columns-plugin tr {
     background-color: transparent !important;
 }
+
+ ￼
+table.columns-plugin {
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+table.columns-plugin td.columns-plugin {
+    border: 0;
+    text-align: justify;
+    vertical-align: top;
+    padding: 0 0.5em 0 0.5em;
+}
+
+table.columns-plugin td.columns-plugin.first {
+    padding-left: 0;
+}
+
+table.columns-plugin td.columns-plugin.last {
+    padding-right: 0;
+}
+
+table.columns-plugin td.columns-plugin.left {
+    text-align: left;
+}
+
+table.columns-plugin td.columns-plugin.center {
+    text-align: center;
+}
+
+table.columns-plugin td.columns-plugin.right {
+    text-align: right;
+}
+
+table.columns-plugin td.columns-plugin.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.columns-plugin td.columns-plugin.right table {
+    margin-left: auto;
+    margin-right: 0;
+}
