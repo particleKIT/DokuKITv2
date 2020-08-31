@@ -94,7 +94,6 @@ div.hiddenHead p::before {
     background-color: transparent !important;
 }
 
- ￼
 table.columns-plugin {
     border: 0;
     border-spacing: 0;
@@ -139,9 +138,25 @@ table.columns-plugin td.columns-plugin.right table {
     margin-right: 0;
 }
 
+/* burocracy plugin */
+
 .dokuwiki form.bureaucracy__plugin fieldset {
     width: auto;
     text-align: center;
+    border: 2px solid #00876c;
+    border-top-right-radius: 0.625rem;
+    border-bottom-left-radius: 0.625rem;
+    padding: 10px;
+}
+
+.dokuwiki form.bureaucracy__plugin legend {
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+}
+
+.dokuwiki form.bureaucracy__plugin button {
+    padding: 5px;
+    color: white;
 }
 
 .dokuwiki form.bureaucracy__plugin label {
