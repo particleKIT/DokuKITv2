@@ -138,3 +138,29 @@ table.columns-plugin td.columns-plugin.right table {
     margin-left: auto;
     margin-right: 0;
 }
+
+.dokuwiki form.bureaucracy__plugin fieldset {
+    width: auto;
+    text-align: center;
+}
+
+.dokuwiki form.bureaucracy__plugin label {
+    float: right;
+    width: 100%;
+    text-align: right;
+    font-weight: 700;
+}
+
+.dokuwiki form.bureaucracy__plugin label textarea.edit {
+    width: 50%;
+    float: right;
+    resize: none;
+}
+
+.dokuwiki form.bureaucracy__plugin label.textareafield > span {
+    width: auto;
+}
+
+.dokuwiki form.bureaucracy__plugin label.textareafield {
+    text-align: right;
+}
