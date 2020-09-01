@@ -30,6 +30,12 @@ input[type=email], input[type=number], input[type=search], input[type=submit], i
     }
 }
 
+form.button,btn_secedit {
+    padding: 0;
+    float: right;
+    font-weight: 450;
+    font-size: 13pt;
+}
 
 html {
     font-size: 100%;
