@@ -206,3 +206,13 @@ table.columns-plugin td.columns-plugin.right table {
 .dokuwiki form.bureaucracy__plugin label.textareafield {
     text-align: right;
 }
+
+.dokuwiki form.searchtable {
+    display: inline-block;
+}
+
+.dokuwiki input.searchtable {
+    margin-bottom: 5px;
+    padding: 0;
+    border: 1px solid #00876c;
+}
