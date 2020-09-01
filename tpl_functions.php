@@ -144,11 +144,11 @@ function trace() {
         } else {
             echo '<div class="list">';
         }
-        echo '<a href="', wl($path) ,'">', $title ,'</a>';
+        echo '<a href="', wl($path) ,'">', ucfirst($title) ,'</a>';
         if(array_key_exists($path, $menu['level'.($n+2)])){
             echo '<ul>';
             foreach($menu['level'.($n+2)][$path] as $u => $t){
-                echo '<li><a href="', wl($u) ,'">', $t ,'</a></li>';
+                echo '<li><a href="', wl($u) ,'">', ucfirst($t) ,'</a></li>';
             }
             echo '</ul>';
         }
