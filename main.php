@@ -1,11 +1,9 @@
 <?php
-// must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
-// include custom template functions stolen from arctic template
 require_once(dirname(__FILE__).'/tpl_functions.php');
 
-// load translation plugin (if present)
+// load translation plugin (if present): not yet tested
 $translation = plugin_load('helper','translation');
 
 

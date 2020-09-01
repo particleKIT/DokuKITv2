@@ -130,7 +130,7 @@ function trace() {
         <a href="', wl($conf['start']),'">', tpl_getConf("institute_".$conf['lang']), '</a>
         <ul>';
         foreach($menu['level1'] as $url => $title) {
-            echo '<li><a href="', wl($url) ,'">', $title ,'</a></li>';
+            echo '<li><a href="', wl($url) ,'">', ucfirst($title) ,'</a></li>';
         }
         echo '</ul>
     </div>';
