@@ -230,3 +230,9 @@ div.sortable thead tr.row0 th.sorttable_sorted_reverse:after {
         content: " \25B4";
         display: contents;
 }
+
+ul.admin_plugins svg {
+    width: 24px;
+    height: 24px;
+}
+
