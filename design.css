@@ -279,3 +279,6 @@ main section>.content>.text .h2:not(:first-of-type),main section>.content>.text 
 }
 }
 
+[lang="en"] .breadcrumbs-big .list .more::after {
+    content: "more";
+}
