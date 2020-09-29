@@ -189,14 +189,13 @@ echo	'
 
 <footer class="page-footer">
             <div class="content-wrap">
-                <div class="column full" style="grid-template-columns:unset;"> <!-- compatible with columns-plugin --!>
-                    <div class="KIT_section text column fourth">', tpl_include_page(tpl_getConf("footer"), false, true, true), ' </div>';
+                <div class="KIT_section text column full">
+                    ', tpl_include_page(tpl_getConf("footer"), false, true, true), ' </div>';
                     if($_SERVER['REMOTE_USER'] && (auth_quickaclcheck(tpl_getConf('foot')) >= AUTH_EDIT)) {
     	                echo '<small><a href="',wl(tpl_getConf('footer'), array('do'=>'edit')), '">Edit</a></small>';
                     }
 echo '         </div>
-            </div>
-            
+
             <div class="footer-meta-navigation">
                 <div class="content-wrap">
                     <span class="copyright">', tpl_getLang('kitfooter') ,'</span>
