@@ -163,7 +163,7 @@ echo '
 	<div class="content">
 	<div class="KIT_section text full dokuwiki">';
 	if($_SERVER['REMOTE_USER']) {
-		echo '<div class="content-wrap" style="text-align:right;">';
+		echo '<div class="content-wrap pagemenu">';
     	foreach((new \dokuwiki\Menu\PageMenu())->getItems() as $item) {
   			echo '<a href="', $item->getLink(), '" title="', $item->getTitle(), '">
 				  	<span class="icon">'.inlineSVG($item->getSvg()).'</span>

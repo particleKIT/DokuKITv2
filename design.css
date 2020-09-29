@@ -258,3 +258,7 @@ main section>.content>.text .h2:not(:first-of-type),main section>.content>.text 
     margin-top: 1.875rem;
 }
 
+.dokuwiki .pagemenu {
+    text-align: right;
+}
+
