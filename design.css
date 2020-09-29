@@ -273,3 +273,9 @@ main section>.content>.text .h2:not(:first-of-type),main section>.content>.text 
     text-align: right;
 }
 
+@media (max-width: 1024px) {
+.navigation-l1 > li.active > a {
+    color: #00876c;
+}
+}
+
