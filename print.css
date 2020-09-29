@@ -1,0 +1,13 @@
+/* Firefox has issues with printing elements that have display: flex or grid, see https://stackoverflow.com/questions/45414152/css-flex-box-not-printing-all-pages-on-firefox - just make them regular block elements for printing */
+
+main section {
+    display: block;
+}
+
+main section .content {
+    display: block;
+}
+
+.dokuwiki .pagemenu {
+    display: none;
+}
