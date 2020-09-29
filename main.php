@@ -230,4 +230,3 @@ if($_SERVER['REMOTE_USER']) tpl_indexerWebBug();
 echo '</body>
     </html>';
 
-?>
