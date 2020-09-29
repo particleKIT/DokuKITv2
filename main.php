@@ -226,7 +226,7 @@ if(!$_SERVER['REMOTE_USER']) {
 </footer>
 ';
 
-if($_SERVER['REMOTE_USER']) tpl_indexerWebBug();
+tpl_indexerWebBug();
 
 echo '</body>
     </html>';
