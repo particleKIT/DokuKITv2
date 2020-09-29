@@ -3,6 +3,8 @@ if (!defined('DOKU_INC')) die();
 
 require_once(dirname(__FILE__).'/tpl_functions.php');
 
+$menu = new DokuKitV2Menu();
+
 // load translation plugin (if present): not yet tested
 $translation = plugin_load('helper','translation');
 
@@ -91,7 +93,7 @@ echo '
 			<a id="meta_search_label" class="search-trigger" title="suchen" href="#"><span>suchen</span></a>
         </div>
 	    </div>';
-echo '<nav class="navigation-main">', dropdown_menu(), '</nav>';
+echo '<nav class="navigation-main">', $menu->printDropdownMenu(), '</nav>';
 
 
 
@@ -117,7 +119,7 @@ echo '<ul class="side-widgets">
 echo '</div></div>
 </header><main>';
 if(
-    $ID ==  $conf['start'] &&
+    ($ID ==  $menu->getStartPage()) &&
     $ACT != 'diff' && 
     $ACT != 'edit' && 
     $ACT != 'preview' && 
@@ -152,7 +154,7 @@ html_msgarea();
 // BREADCRUMBS
 echo '<section class="breadcrumbs-big">';
 echo    '<div class="content-wrap">';
-            trace();
+            $menu->printTrace();
 echo '	</div>
 </section>';
 
