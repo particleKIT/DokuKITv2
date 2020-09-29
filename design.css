@@ -37,8 +37,11 @@ form.button,btn_secedit {
     font-size: 13pt;
 }
 
-html {
-    font-size: 100%;
+/* The KIT CSS we use has a typo, font sizes smaller than 100% should be restricted to maximum widths smaller than 1710px, but the style sheet says 17100px instead. */
+@media (min-width: 1711px) {
+    html {
+        font-size:100%
+    }
 }
 
 /* Translation plugin adaptation */
