@@ -40,6 +40,17 @@ form.button,btn_secedit {
 html {
     font-size: 100%;
 }
+
+/* Translation plugin adaptation */
+
+.navigation-language li + li::before {
+   display: none;
+}
+
+.navigation-language ul li div.cur {
+    display: none;
+}
+
 /* hide-plugin integration*/
 
 div.hiddenHead {
