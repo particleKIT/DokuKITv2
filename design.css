@@ -236,3 +236,25 @@ ul.admin_plugins svg {
     height: 24px;
 }
 
+/* Fix section edit buttons jumping around */
+main section>.content>.text .h2:not(:first-of-type),main section>.content>.text h2:not(:first-of-type) {
+    margin-top: 1.875rem;
+}
+
+.dokuwiki.text > :not(a) + * {
+    margin-top: 0;
+}
+
+.dokuwiki.text div.level1,
+.dokuwiki.text div.level2,
+.dokuwiki.text div.level3,
+.dokuwiki.text div.level4,
+.dokuwiki.text div.level5,
+.dokuwiki.text h2,
+.dokuwiki.text h3,
+.dokuwiki.text h4,
+.dokuwiki.text h5
+{
+    margin-top: 1.875rem;
+}
+
