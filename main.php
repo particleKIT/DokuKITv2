@@ -243,7 +243,7 @@ if(!$_SERVER['REMOTE_USER']) {
     $ACT != 'admin' &&
     $ACT != 'profile' &&
     $ACT != 'revisions') { 
-    echo '<li>', tpl_pageinfo(true), '</li>';
+    echo ' <li>', tpl_pageinfo(true), '</li>';
 }
  echo '             </ul>
                 </div>
