@@ -166,13 +166,13 @@ if(
     /* default images from https://pixabay.com/illustrations/universe-particles-vibration-line-1566161/*/
     echo '
 <section class="stage stage-big">
-    <img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/head-big.jpg" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />
+    <img src="', tpl_getMediaFile([':wiki:head-big.jpg', ':head-big.jpg', 'images/head-big.jpg']), '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />
     <div class="content-wrap"><p class="bigger" title="', $conf['title'] ,'">', $conf['title'] ,'</p></div>
 </section>';
 } else{
     echo '
 <section class="stage stage-small">
-    <img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/head-small.jpg" alt="', $conf['title'] ,'" loading="lazy"/>
+    <img src="', tpl_getMediaFile([':wiki:head-small.jpg', ':head-small.jpg', 'images/head-small.jpg']), '" alt="', $conf['title'] ,'" loading="lazy"/>
     <div class="content-wrap">
         <a href="', wl($conf['start']),'">', $conf['title'] ,'</a>
         <!-- <a href="/index.php"><img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/logo.jpg" alt="SCC-Logo" /></a> --!>
