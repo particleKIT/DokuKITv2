@@ -88,14 +88,20 @@ echo '<span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink
 
 if($_SERVER['REMOTE_USER']) echo (new \dokuwiki\Menu\UserMenu())->getListItems();
 echo '              </ul>';
-echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
 if ($translation) {
     if(!$_SERVER['REMOTE_USER']) $conf['plugin']['translation']['checkage'] = 0;
-    echo $translation->showTranslations();
+    $translation_output = $translation->showTranslations();
+    if (!empty($translation_output)) {
+        echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
+        echo $translation_output;
+        echo '</div>';
+    } else {
+        // This is just to make the JS happy which breaks if this element is missing
+        echo '<div class="navigation-language" style="display:none;"></div>';
+    }
 } else {
-   echo strtoupper($conf['lang']);
+    echo '<div class="navigation-language" style="display:none;"></div>';
 }
-echo '</div>';
 
 //search bar
 echo ' 
