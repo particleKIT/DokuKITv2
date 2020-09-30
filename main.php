@@ -47,14 +47,24 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                     <rect class="burger-middle" y="107.2" width="300" height="60.1"></rect>
                     <rect class="burger-bottom" y="0" width="300" height="60.1"></rect>
                 </svg></button>
-                <a id="logo_oe_name" href="', wl($conf['start']),'">', $conf['title'] ,'</a>
+                <a id="logo_oe_name" href="', wl($menu->getStartPage()),'">', $conf['title'] ,'</a>
                 <div class="navigation-meta">
                     <ul class="navigation-meta-links">
-                       <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
- echo '                <li><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
-                        <li><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
-                        <li><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
-                        <li><a href="http://www.kit.edu/english/index.php"><span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
+                       <li>', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+} else {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+}
+echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
+if ($conf['lang'] === 'de') {
+echo '                  <li><a href="https://www.kit.edu/">';
+} else {
+echo '                  <li><a href="https://www.kit.edu/english/">';
+}
+echo '<span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
                         <polygon points="299.3,295.7 299.3,295.6 299.3,295.6 "></polygon>
                         <polygon points="299.3,295.6 299.3,295.6 299.3,295.6 "></polygon>
                         <path d="M67.9,108.1c-15.6,18.9-28.8,39.6-39.3,61.7l270.6,125.9L67.9,108.1z"></path>
@@ -99,10 +109,15 @@ echo '<nav class="navigation-main">', $menu->printDropdownMenu(), '</nav>';
 
 // side tools when scrolling and mobile view
 echo '<ul class="side-widgets">
-      <li class="meta">', html_wikilink(':' . $conf['start'], 'Home') ,'</li>
-      <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
-      <li class="meta"><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
-      <li class="meta"><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
+                       <li class="meta">', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li class="meta"><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+} else {
+ echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li class="meta"><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+}
+echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>
 <li class="search">
 	<a title="suchen"><span>suchen</span></a>
     <div class="search-form">
@@ -202,11 +217,21 @@ echo '         </div>
                 <div class="content-wrap">
                     <span class="copyright">', tpl_getLang('kitfooter') ,'</span>
                     <ul>
-                        <li><a accesskey="1" href="/index.php">Home</a></li> 
-                        <li><a accesskey="8" href="/impressum.php">Imprint</a></li>
-                        <li><a href="/datenschutz.php">Privacy</a></li>
-                        <li><a href="http://www.kit.edu"><span>KIT</span></a></li>';
-    
+                        <li><a accesskey="1" href="', wl($menu->getStartPage()), '">Home</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+} else {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+}
+echo '                  <li>', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
+if ($conf['lang'] === 'de') {
+echo '                  <li><a href="https://www.kit.edu/"><span>KIT</span></a></li>';
+} else {
+echo '                  <li><a href="https://www.kit.edu/english/"><span>KIT</span></a></li>';
+}
+
 if(!$_SERVER['REMOTE_USER']) {
     echo '<li>', (new \dokuwiki\Menu\Item\Login)->asHtmlLink('menuitem' ,false), '</li>';
 } elseif (
