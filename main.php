@@ -17,6 +17,7 @@ if (empty(tpl_getConf('privacypolicy'))) {
 // load translation plugin (if present): not yet tested
 $translation = plugin_load('helper','translation');
 
+if(null != tpl_getConf("institute_".$conf['lang'])) $conf['title'] = tpl_getConf("institute_".$conf['lang']);
 
 echo '
 <!DOCTYPE html>
@@ -91,7 +92,6 @@ echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
 if ($translation) {
     if(!$_SERVER['REMOTE_USER']) $conf['plugin']['translation']['checkage'] = 0;
     echo $translation->showTranslations();
-    if(null != tpl_getConf("institute_".$conf['lang'])) $conf['title'] = tpl_getConf("institute_".$conf['lang']);
 } else {
    echo strtoupper($conf['lang']);
 }
