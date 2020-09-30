@@ -110,12 +110,12 @@ echo '
               <form action="', wl(),'" method="get" role="search" id="dw__search" accept-charset="utf-8">
                 <input type="hidden" name="do" value="search" />
                 <input type="hidden" name="id" value="', $ID ,'" />
-                <input id="meta_search_input" type="search" name="q" placeholder="suchen" aria-label="suchen" size="1" required="required" />
-                <button value="1" type="submit"><span>suchen</span></button>
+                <input id="meta_search_input" type="search" name="q" placeholder="', $lang['btn_search'] ,'" aria-label="', $lang['btn_search'], '" size="1" required="required" />
+                <button value="1" type="submit"><span>', $lang['btn_search'], '</span></button>
                 <div id="qsearch__out" class="ajax_qsearch JSpopup"></div>
               </form>
             </div>
-			<a id="meta_search_label" class="search-trigger" title="suchen" href="#"><span>suchen</span></a>
+			<a id="meta_search_label" class="search-trigger" title="', $lang['btn_search'], '" href="#"><span>', $lang['btn_search'], '</span></a>
         </div>
 	    </div>';
 echo '<nav class="navigation-main">', $menu->printDropdownMenu(), '</nav>';
@@ -134,13 +134,13 @@ if ($conf['lang'] === 'de') {
 }
 echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>
 <li class="search">
-	<a title="suchen"><span>suchen</span></a>
+	<a title="', $lang['btn_search'], '"><span>', $lang['btn_search'], '</span></a>
     <div class="search-form">
           <form action="', wl(),'" method="get" role="search" id="dw__search" accept-charset="utf-8">
                <input type="hidden" name="do" value="search" />
                <input type="hidden" name="id" value="', $ID ,'" />
-               <input type="search" name="q" placeholder="suchen" aria-label="suchen" size="1" required="required"/>
-               <button value="1" type="submit"><span>suchen</span></button>
+               <input type="search" name="q" placeholder="', $lang['btn_search'], '" aria-label="', $lang['btn_search'], '" size="1" required="required"/>
+               <button value="1" type="submit"><span>', $lang['btn_search'], '</span></button>
            </form>
        </div>
 </li>
