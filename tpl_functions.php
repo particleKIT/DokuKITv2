@@ -137,6 +137,7 @@ class DokuKitV2Menu {
         $num = count($this->openPath);
         for($i = 0; $i < $num; $i++) {
             $id = $this->openPath[$i];
+            if ($id === '') continue;
             $item = $this->menu[$id];
 
             if ($i < $num - 1) {
