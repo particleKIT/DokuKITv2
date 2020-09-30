@@ -7,4 +7,4 @@ $lang['institute_de'] = 'Institute name (german)';
 $lang['institute_en'] = 'Institute name (english)';
 $lang['shortinstitute'] = 'Institute acronym/shortcut';
 $lang['title_prefix'] = 'prefix for the html title tag';
-?>
+$lang['privacypolicy'] = 'Privacy policy page id, leave empty for KIT-wide privacy policy';

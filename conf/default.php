@@ -8,4 +8,4 @@ $conf['institute_de'] = "Mein Institut"; //german institute name
 $conf['institute_en'] = "My Institute";  //english institute name
 $conf['shortinstitute'] = 'MY'; //instituts short name
 $conf['title_prefix'] = 'MY - '; //prefix string
-?>
+$conf['privacypolicy'] = ''; // privacy policy page

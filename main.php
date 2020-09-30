@@ -4,6 +4,15 @@ if (!defined('DOKU_INC')) die();
 require_once(dirname(__FILE__).'/tpl_functions.php');
 
 $menu = new DokuKitV2Menu();
+if (empty(tpl_getConf('privacypolicy'))) {
+    if ($conf['lang'] === 'de') {
+        $privacypolicy_url = "https://kit.edu/datenschutz.php";
+    } else {
+        $privacypolicy_url = "https://kit.edu/privacypolicy.php";
+    }
+} else {
+    $privacypolicy_url = wl(tpl_getConf('privacypolicy'));
+}
 
 // load translation plugin (if present): not yet tested
 $translation = plugin_load('helper','translation');
@@ -53,10 +62,10 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                        <li>', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
 if ($conf['lang'] === 'de') {
  echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
-                        <li><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+                        <li><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
 } else {
  echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
-                        <li><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+                        <li><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
 }
 echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
 if ($conf['lang'] === 'de') {
@@ -112,10 +121,10 @@ echo '<ul class="side-widgets">
                        <li class="meta">', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
 if ($conf['lang'] === 'de') {
  echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
-                        <li class="meta"><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+                        <li class="meta"><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
 } else {
  echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
-                        <li class="meta"><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+                        <li class="meta"><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
 }
 echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>
 <li class="search">
@@ -220,10 +229,10 @@ echo '         </div>
                         <li><a accesskey="1" href="', wl($menu->getStartPage()), '">Home</li>';
 if ($conf['lang'] === 'de') {
  echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
-                        <li><a href="https://kit.edu/datenschutz.php">Datenschutz</a></li>';
+                        <li><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
 } else {
  echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
-                        <li><a href="https://kit.edu/privacypolicy.php">Privacy Policy</a></li>';
+                        <li><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
 }
 echo '                  <li>', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
 if ($conf['lang'] === 'de') {
