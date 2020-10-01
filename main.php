@@ -48,7 +48,7 @@ echo tpl_favicon(array('favicon', 'mobile')), '
     <header class="page-header">
         <div class="content-wrap">
             <div class="logo">',
-            tpl_includeFile('logo.html')
+            tpl_includeFile('logo-'.$conf['lang'].'.html')
             ,'</div>
 
             <div class="navigation">
