@@ -166,7 +166,17 @@ if(
     /* default images from https://pixabay.com/illustrations/universe-particles-vibration-line-1566161/*/
     echo '
 <section class="stage stage-big">
-    <img src="', tpl_getMediaFile([':wiki:head-big.jpg', ':head-big.jpg', 'images/head-big.jpg']), '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />
+    <img src="', tpl_getMediaFile([':wiki:head-big.jpg', ':head-big.jpg', ':wiki:head-big.png', ':head-big.png', 'images/head-big.jpg']), '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />';
+    for ($i = 1; true; $i++) {
+        $imginfo = null;
+        $img = tpl_getMediaFile([':wiki:head-big-'.$i.'.jpg', ':head-big-'.$i.'.jpg', ':wiki:head-big-'.$i.'.png', ':head-big-'.$i.'.png'], false, $imginfo, false);
+        if ($img !== false) {
+            echo '<img src="', $img, '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" style="display: none;" />';
+        } else {
+            break;
+        }
+    }
+    echo '
     <div class="content-wrap"><p class="bigger" title="', $conf['title'] ,'">', $conf['title'] ,'</p></div>
 </section>';
 } else{

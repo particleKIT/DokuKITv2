@@ -285,6 +285,13 @@ main section>.content>.text .h2:not(:first-of-type),main section>.content>.text 
     display: none;
 }
 
+/* set width to auto to fix image size during transitions with position: absolute */
+@media (max-width: 560px) {
+    .stage-big img {
+        width: auto;
+    }
+}
+
 .dokuwiki .pagemenu {
     text-align: right;
 }
