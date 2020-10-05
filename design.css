@@ -272,6 +272,19 @@ main section>.content>.text .h2:not(:first-of-type),main section>.content>.text 
     margin-top: 1.875rem;
 }
 
+/* Reset KIT styles inside the DokuWiki container */
+/* This created problems in the media manager */
+.dokuwiki .text ol > li > span, .dokuwiki .text ul > li > span
+{
+    display: inline;
+}
+
+/* Restore the hidden behavior on spans where the KIT styles enforced display: block; */
+.dokuwiki .text ol > li > span.hidden, .dokuwiki .text ul > li > span.hidden
+{
+    display: none;
+}
+
 .dokuwiki .pagemenu {
     text-align: right;
 }
