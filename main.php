@@ -24,7 +24,7 @@ echo '
          <script src="https://static.scc.kit.edu/kit-2020/js/main.js"></script>
          <script src="https://static.scc.kit.edu/kit-2020/js/kit.js"></script>
          <script src="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.js"></script>
-         <link rel="stylesheet" type="text/css" href="',tpl_includeFile('global_stylesheet.css'), '">
+         <link rel="stylesheet" type="text/css" href="', DOKU_URL,  'lib/tpl/dokukitv2/global_stylesheet.css">
          <link rel="stylesheet" href="https://static.scc.kit.edu/fancybox/dist/jquery.fancybox.min.css" />
 ';
 // dokuwiki specific css and js
