@@ -3,9 +3,21 @@ if (!defined('DOKU_INC')) die();
 
 require_once(dirname(__FILE__).'/tpl_functions.php');
 
+$menu = new DokuKitV2Menu();
+if (empty(tpl_getConf('privacypolicy'))) {
+    if ($conf['lang'] === 'de') {
+        $privacypolicy_url = "https://kit.edu/datenschutz.php";
+    } else {
+        $privacypolicy_url = "https://kit.edu/privacypolicy.php";
+    }
+} else {
+    $privacypolicy_url = wl(tpl_getConf('privacypolicy'));
+}
+
 // load translation plugin (if present): not yet tested
 $translation = plugin_load('helper','translation');
 
+if(null != tpl_getConf("institute_".$conf['lang'])) $conf['title'] = tpl_getConf("institute_".$conf['lang']);
 
 echo '
 <!DOCTYPE html>
@@ -36,7 +48,7 @@ echo tpl_favicon(array('favicon', 'mobile')), '
     <header class="page-header">
         <div class="content-wrap">
             <div class="logo">',
-            tpl_includeFile('logo.html')
+            tpl_includeFile('logo-'.$conf['lang'].'.html')
             ,'</div>
 
             <div class="navigation">
@@ -45,14 +57,24 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                     <rect class="burger-middle" y="107.2" width="300" height="60.1"></rect>
                     <rect class="burger-bottom" y="0" width="300" height="60.1"></rect>
                 </svg></button>
-                <a id="logo_oe_name" href="', wl($conf['start']),'">', $conf['title'] ,'</a>
+                <a id="logo_oe_name" href="', wl($menu->getStartPage()),'">', $conf['title'] ,'</a>
                 <div class="navigation-meta">
                     <ul class="navigation-meta-links">
-                       <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
- echo '                <li><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
-                        <li><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
-                        <li><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
-                        <li><a href="http://www.kit.edu/english/index.php"><span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
+                       <li>', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
+} else {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
+}
+echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
+if ($conf['lang'] === 'de') {
+echo '                  <li><a href="https://www.kit.edu/">';
+} else {
+echo '                  <li><a href="https://www.kit.edu/english/">';
+}
+echo '<span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
                         <polygon points="299.3,295.7 299.3,295.6 299.3,295.6 "></polygon>
                         <polygon points="299.3,295.6 299.3,295.6 299.3,295.6 "></polygon>
                         <path d="M67.9,108.1c-15.6,18.9-28.8,39.6-39.3,61.7l270.6,125.9L67.9,108.1z"></path>
@@ -66,15 +88,20 @@ echo tpl_favicon(array('favicon', 'mobile')), '
 
 if($_SERVER['REMOTE_USER']) echo (new \dokuwiki\Menu\UserMenu())->getListItems();
 echo '              </ul>';
-echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
 if ($translation) {
     if(!$_SERVER['REMOTE_USER']) $conf['plugin']['translation']['checkage'] = 0;
-    echo $translation->showTranslations();
-    if(null != tpl_getConf("institute_".$conf['lang'])) $conf['title'] = tpl_getConf("institute_".$conf['lang']);
+    $translation_output = $translation->showTranslations();
+    if (!empty($translation_output)) {
+        echo '<div class="navigation-language" style="margin-left: 0.6875em;">';
+        echo $translation_output;
+        echo '</div>';
+    } else {
+        // This is just to make the JS happy which breaks if this element is missing
+        echo '<div class="navigation-language" style="display:none;"></div>';
+    }
 } else {
-   echo strtoupper($conf['lang']);
+    echo '<div class="navigation-language" style="display:none;"></div>';
 }
-echo '</div>';
 
 //search bar
 echo ' 
@@ -83,32 +110,37 @@ echo '
               <form action="', wl(),'" method="get" role="search" id="dw__search" accept-charset="utf-8">
                 <input type="hidden" name="do" value="search" />
                 <input type="hidden" name="id" value="', $ID ,'" />
-                <input id="meta_search_input" type="search" name="q" placeholder="suchen" aria-label="suchen" size="1" required="required" />
-                <button value="1" type="submit"><span>suchen</span></button>
+                <input id="meta_search_input" type="search" name="q" placeholder="', $lang['btn_search'] ,'" aria-label="', $lang['btn_search'], '" size="1" required="required" />
+                <button value="1" type="submit"><span>', $lang['btn_search'], '</span></button>
                 <div id="qsearch__out" class="ajax_qsearch JSpopup"></div>
               </form>
             </div>
-			<a id="meta_search_label" class="search-trigger" title="suchen" href="#"><span>suchen</span></a>
+			<a id="meta_search_label" class="search-trigger" title="', $lang['btn_search'], '" href="#"><span>', $lang['btn_search'], '</span></a>
         </div>
 	    </div>';
-echo '<nav class="navigation-main">', dropdown_menu(), '</nav>';
+echo '<nav class="navigation-main">', $menu->printDropdownMenu(), '</nav>';
 
 
 
 // side tools when scrolling and mobile view
 echo '<ul class="side-widgets">
-      <li class="meta">', html_wikilink(':' . $conf['start'], 'Home') ,'</li>
-      <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
-      <li class="meta"><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
-      <li class="meta"><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
+                       <li class="meta">', html_wikilink(':'.$menu->getStartPage(), 'Home') ,'</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li class="meta"><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
+} else {
+ echo '                 <li class="meta"><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li class="meta"><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
+}
+echo '                  <li class="meta">', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>
 <li class="search">
-	<a title="suchen"><span>suchen</span></a>
+	<a title="', $lang['btn_search'], '"><span>', $lang['btn_search'], '</span></a>
     <div class="search-form">
           <form action="', wl(),'" method="get" role="search" id="dw__search" accept-charset="utf-8">
                <input type="hidden" name="do" value="search" />
                <input type="hidden" name="id" value="', $ID ,'" />
-               <input type="search" name="q" placeholder="suchen" aria-label="suchen" size="1" required="required"/>
-               <button value="1" type="submit"><span>suchen</span></button>
+               <input type="search" name="q" placeholder="', $lang['btn_search'], '" aria-label="', $lang['btn_search'], '" size="1" required="required"/>
+               <button value="1" type="submit"><span>', $lang['btn_search'], '</span></button>
            </form>
        </div>
 </li>
@@ -117,7 +149,7 @@ echo '<ul class="side-widgets">
 echo '</div></div>
 </header><main>';
 if(
-    $ID ==  $conf['start'] &&
+    ($ID ==  $menu->getStartPage()) &&
     $ACT != 'diff' && 
     $ACT != 'edit' && 
     $ACT != 'preview' && 
@@ -134,13 +166,23 @@ if(
     /* default images from https://pixabay.com/illustrations/universe-particles-vibration-line-1566161/*/
     echo '
 <section class="stage stage-big">
-    <img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/head-big.jpg" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />
+    <img src="', tpl_getMediaFile([':wiki:head-big.jpg', ':head-big.jpg', ':wiki:head-big.png', ':head-big.png', 'images/head-big.jpg']), '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" />';
+    for ($i = 1; true; $i++) {
+        $imginfo = null;
+        $img = tpl_getMediaFile([':wiki:head-big-'.$i.'.jpg', ':head-big-'.$i.'.jpg', ':wiki:head-big-'.$i.'.png', ':head-big-'.$i.'.png'], false, $imginfo, false);
+        if ($img !== false) {
+            echo '<img src="', $img, '" alt="', $conf['title'] ,'" loading="lazy" width="1920" height="700" style="display: none;" />';
+        } else {
+            break;
+        }
+    }
+    echo '
     <div class="content-wrap"><p class="bigger" title="', $conf['title'] ,'">', $conf['title'] ,'</p></div>
 </section>';
 } else{
     echo '
 <section class="stage stage-small">
-    <img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/head-small.jpg" alt="', $conf['title'] ,'" loading="lazy"/>
+    <img src="', tpl_getMediaFile([':wiki:head-small.jpg', ':head-small.jpg', 'images/head-small.jpg']), '" alt="', $conf['title'] ,'" loading="lazy"/>
     <div class="content-wrap">
         <a href="', wl($conf['start']),'">', $conf['title'] ,'</a>
         <!-- <a href="/index.php"><img src="'.DOKU_URL.'/lib/tpl/dokukitv2/images/logo.jpg" alt="SCC-Logo" /></a> --!>
@@ -152,7 +194,7 @@ html_msgarea();
 // BREADCRUMBS
 echo '<section class="breadcrumbs-big">';
 echo    '<div class="content-wrap">';
-            trace();
+            $menu->printTrace();
 echo '	</div>
 </section>';
 
@@ -163,7 +205,7 @@ echo '
 	<div class="content">
 	<div class="KIT_section text full dokuwiki">';
 	if($_SERVER['REMOTE_USER']) {
-		echo '<div class="content-wrap" style="text-align:right;">';
+		echo '<div class="content-wrap pagemenu">';
     	foreach((new \dokuwiki\Menu\PageMenu())->getItems() as $item) {
   			echo '<a href="', $item->getLink(), '" title="', $item->getTitle(), '">
 				  	<span class="icon">'.inlineSVG($item->getSvg()).'</span>
@@ -189,23 +231,32 @@ echo	'
 
 <footer class="page-footer">
             <div class="content-wrap">
-                <div class="column full" style="grid-template-columns:unset;"> <!-- compatible with columns-plugin --!>
-                    <div class="KIT_section text column fourth">', tpl_include_page(tpl_getConf("footer"), false, true, true), ' </div>';
+                <div class="KIT_section text column full">
+                    ', tpl_include_page(tpl_getConf("footer"), false, true, true), ' </div>';
                     if($_SERVER['REMOTE_USER'] && (auth_quickaclcheck(tpl_getConf('foot')) >= AUTH_EDIT)) {
     	                echo '<small><a href="',wl(tpl_getConf('footer'), array('do'=>'edit')), '">Edit</a></small>';
                     }
 echo '         </div>
-            </div>
-            
+
             <div class="footer-meta-navigation">
                 <div class="content-wrap">
                     <span class="copyright">', tpl_getLang('kitfooter') ,'</span>
                     <ul>
-                        <li><a accesskey="1" href="/index.php">Home</a></li> 
-                        <li><a accesskey="8" href="/impressum.php">Imprint</a></li>
-                        <li><a href="/datenschutz.php">Privacy</a></li>
-                        <li><a href="http://www.kit.edu"><span>KIT</span></a></li>';
-    
+                        <li><a accesskey="1" href="', wl($menu->getStartPage()), '">Home</li>';
+if ($conf['lang'] === 'de') {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/impressum.php">Impressum</a></li>
+                        <li><a href="', $privacypolicy_url, '">Datenschutz</a></li>';
+} else {
+ echo '                 <li><a accesskey="8" href="https://kit.edu/legals.php">Legals</a></li>
+                        <li><a href="', $privacypolicy_url, '">Privacy Policy</a></li>';
+}
+echo '                  <li>', (new \dokuwiki\Menu\Item\Index)->asHtmlLink('menuitem', false), '</li>';
+if ($conf['lang'] === 'de') {
+echo '                  <li><a href="https://www.kit.edu/"><span>KIT</span></a></li>';
+} else {
+echo '                  <li><a href="https://www.kit.edu/english/"><span>KIT</span></a></li>';
+}
+
 if(!$_SERVER['REMOTE_USER']) {
     echo '<li>', (new \dokuwiki\Menu\Item\Login)->asHtmlLink('menuitem' ,false), '</li>';
 } elseif (
@@ -217,7 +268,7 @@ if(!$_SERVER['REMOTE_USER']) {
     $ACT != 'admin' &&
     $ACT != 'profile' &&
     $ACT != 'revisions') { 
-    echo '<li>', tpl_pageinfo(true), '</li>';
+    echo ' <li>', tpl_pageinfo(true), '</li>';
 }
  echo '             </ul>
                 </div>
@@ -225,9 +276,8 @@ if(!$_SERVER['REMOTE_USER']) {
 </footer>
 ';
 
-if($_SERVER['REMOTE_USER']) tpl_indexerWebBug();
+tpl_indexerWebBug();
 
 echo '</body>
     </html>';
 
-?>

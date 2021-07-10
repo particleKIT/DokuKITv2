@@ -37,9 +37,23 @@ form.button,btn_secedit {
     font-size: 13pt;
 }
 
-html {
-    font-size: 100%;
+/* The KIT CSS we use has a typo, font sizes smaller than 100% should be restricted to maximum widths smaller than 1710px, but the style sheet says 17100px instead. */
+@media (min-width: 1711px) {
+    html {
+        font-size:100%
+    }
 }
+
+/* Translation plugin adaptation */
+
+.navigation-language li + li::before {
+   display: none;
+}
+
+.navigation-language ul li div.cur {
+    display: none;
+}
+
 /* hide-plugin integration*/
 
 div.hiddenHead {
@@ -236,3 +250,58 @@ ul.admin_plugins svg {
     height: 24px;
 }
 
+/* Fix section edit buttons jumping around */
+main section>.content>.text .h2:not(:first-of-type),main section>.content>.text h2:not(:first-of-type) {
+    margin-top: 1.875rem;
+}
+
+.dokuwiki.text > :not(a) + * {
+    margin-top: 0;
+}
+
+.dokuwiki.text div.level1,
+.dokuwiki.text div.level2,
+.dokuwiki.text div.level3,
+.dokuwiki.text div.level4,
+.dokuwiki.text div.level5,
+.dokuwiki.text h2,
+.dokuwiki.text h3,
+.dokuwiki.text h4,
+.dokuwiki.text h5
+{
+    margin-top: 1.875rem;
+}
+
+/* Reset KIT styles inside the DokuWiki container */
+/* This created problems in the media manager */
+.dokuwiki .text ol > li > span, .dokuwiki .text ul > li > span
+{
+    display: inline;
+}
+
+/* Restore the hidden behavior on spans where the KIT styles enforced display: block; */
+.dokuwiki .text ol > li > span.hidden, .dokuwiki .text ul > li > span.hidden
+{
+    display: none;
+}
+
+/* set width to auto to fix image size during transitions with position: absolute */
+@media (max-width: 560px) {
+    .stage-big img {
+        width: auto;
+    }
+}
+
+.dokuwiki .pagemenu {
+    text-align: right;
+}
+
+@media (max-width: 1024px) {
+.navigation-l1 > li.active > a {
+    color: #00876c;
+}
+}
+
+[lang="en"] .breadcrumbs-big .list .more::after {
+    content: "more";
+}
