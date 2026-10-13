@@ -51,8 +51,9 @@ echo tpl_favicon(array('favicon', 'mobile')), '
                        <li>', html_wikilink(':' . $conf['start'], 'Home') ,'</li>';
  echo '                <li><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
                         <li><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
+                        <li><a href="https://www.kit.edu/accessibility.php">Accessibility</a></li>
                         <li><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
-                        <li><a href="http://www.kit.edu/english/index.php"><span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
+                        <li><a href="https://www.kit.edu/english/index.php"><span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.4 295.7" width="299.4px" height="295.7px">
                         <polygon points="299.3,295.7 299.3,295.6 299.3,295.6 "></polygon>
                         <polygon points="299.3,295.6 299.3,295.6 299.3,295.6 "></polygon>
                         <path d="M67.9,108.1c-15.6,18.9-28.8,39.6-39.3,61.7l270.6,125.9L67.9,108.1z"></path>
@@ -100,6 +101,7 @@ echo '<ul class="side-widgets">
       <li class="meta">', html_wikilink(':' . $conf['start'], 'Home') ,'</li>
       <li class="meta"><a accesskey="8" href="https://kit.edu/impressum.php">Imprint</a></li>
       <li class="meta"><a href="https://kit.edu/datenschutz.php">Privacy</a></li>
+      <li class="meta"><a href="https://www.kit.edu/accessibility.php">Accessibility</a></li>
       <li class="meta"><a href="',  DOKU_URL ,'doku.php?do=index">Sitemap</a></li>
 <li class="search">
 	<a title="suchen"><span>suchen</span></a>
@@ -204,7 +206,8 @@ echo '         </div>
                         <li><a accesskey="1" href="/index.php">Home</a></li> 
                         <li><a accesskey="8" href="/impressum.php">Imprint</a></li>
                         <li><a href="/datenschutz.php">Privacy</a></li>
-                        <li><a href="http://www.kit.edu"><span>KIT</span></a></li>';
+                        <li><a href="https://www.kit.edu/accessibility.php">Accessibility</a></li>
+                        <li><a href="https://www.kit.edu"><span>KIT</span></a></li>';
     
 if(!$_SERVER['REMOTE_USER']) {
     echo '<li>', (new \dokuwiki\Menu\Item\Login)->asHtmlLink('menuitem' ,false), '</li>';
